@@ -109,6 +109,7 @@ if($_SESSION['level']==""){
     </div>
 
     <!-- Main content -->
+    
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
@@ -117,12 +118,19 @@ if($_SESSION['level']==""){
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>20</h3>
-                <p>Assigned Asset</p>
+              <?php
+                include 'koneksi.php';
+                $data_admin = mysqli_query($db,"SELECT * FROM  tb_admin where level ='admin' ");
+                
+                // menghitung data barang
+                $jumlah_user = mysqli_num_rows($data_admin);
+                ?>
+<h2><b><?php echo $jumlah_user; ?></b></h2>
+ <p>  Data User </p>
               </div>
               <div class="icon">
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="user_manage.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -130,13 +138,19 @@ if($_SESSION['level']==""){
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>20<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Accesorries</p>
+              <?php
+                    include 'koneksi.php';
+                    $data_asset = mysqli_query($db,"SELECT * FROM  tb_asset ");
+                    
+                    // menghitung data barang
+                    $jumlah_asset = mysqli_num_rows($data_asset);
+                    ?>
+<h2><b><?php echo $jumlah_asset; ?></b></h2>
+                <p>DATA ASSET</p>
               </div>
               <div class="icon">
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="asset.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -144,9 +158,15 @@ if($_SESSION['level']==""){
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>20</h3>
-
-                <p>Employee</p>
+              <?php
+                include 'koneksi.php';
+                $data_asset = mysqli_query($db,"SELECT * FROM  tb_asset where memory like '8%' ");
+                
+                // menghitung data barang
+                $jumlah_asset = mysqli_num_rows($data_asset);
+                ?>
+<h2><b><?php echo $jumlah_asset; ?></b></h2>
+               <b><p>Memory 8GB</p></b>
               </div>
               <div class="icon">
               </div>
@@ -158,17 +178,23 @@ if($_SESSION['level']==""){
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>20</h3>
+              <?php
+                  include 'koneksi.php';
+                  $data_asset = mysqli_query($db,"SELECT * FROM  tb_asset where memory like '16%' ");
+                  
+                  // menghitung data barang
+                  $jumlah_asset = mysqli_num_rows($data_asset);
+                  ?>
+                  <h2><b><?php echo $jumlah_asset; ?></b></h2>
 
-                <p>License</p>
+               <b> <p>Memory 16GB</p></b>
               </div>
               <div class="icon">
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
-          <!-- ./col -->
-        </div>
+          </div>       
+    
         
             </div>
           </section>
@@ -296,12 +322,12 @@ if($_SESSION['level']==""){
           echo mysqli_num_rows($jumlah_Dell);
 					?>, 
 					<?php 
-					$jumlah_VMware = mysqli_query($db,"select * from tb_asset where system_manufacturer='VMware'");
+					$jumlah_VMware = mysqli_query($db,"select * from tb_asset where system_manufacturer='VMware, Inc.'");
           echo mysqli_num_rows($jumlah_VMware);
 					?>
 					],
 					backgroundColor: 
-            ['rgb(255, 99, 132)', 'rgba(56, 86, 255, 0.87)', 'rgb(60, 179, 113)','rgb(175, 238, 239)'],
+['rgb(255, 99, 132)', 'rgba(56, 86, 255, 0.87)', 'rgb(60, 179, 113)','rgb(175, 238, 239)'],
 				
 					borderColor: ['rgb(255, 99, 132)'],
 					borderWidth: 1
