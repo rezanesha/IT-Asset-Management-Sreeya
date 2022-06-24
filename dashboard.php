@@ -91,27 +91,11 @@ if($_SESSION['level']==""){
       </nav>
     </div>
     </aside>
-  <div class="content-wrapper">
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
     <!-- Main content -->
-    
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <form action="simple-results.html">
-                        <div class="input-group">
-                            <input type="search" class="form-control form-control-lg" placeholder="Search">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-lg btn-default">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
- 
+    <div class="card">
+              <div class="card-header">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -188,12 +172,29 @@ if($_SESSION['level']==""){
         
             </div>
           </section>
+          <div class="content-header">
+          <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Data Pengguna Microsoft</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart">
+              
           <script type="text/javascript" src="Chart.js"></script>
     <?php 
 	include 'koneksi.php';
 	?>
  
-	<div style="width: 800px;margin: 0px auto;">
+	<div style="width: 700px;margin: 0px auto;">
 		<canvas id="myChart"></canvas>
 	</div>
  
@@ -224,18 +225,10 @@ if($_SESSION['level']==""){
 					echo mysqli_num_rows($jumlah_2012);
 					?>
 					],
-					backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(255, 206, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)'
-					],
-					borderColor: [
-					'rgba(255,99,132,1)',
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 206, 86, 1)',
-					'rgba(75, 192, 192, 1)'
-					],
+					backgroundColor: 
+            ['rgb(255, 99, 132)', 'rgba(56, 86, 255, 0.87)', 'rgb(60, 179, 113)','rgb(175, 238, 239)'],
+				
+					borderColor: ['rgb(255, 99, 132)'],
 					borderWidth: 1
 				}]
 			},
@@ -250,10 +243,92 @@ if($_SESSION['level']==""){
 			}
 		});
 	</script>
-        </div>
-      </div>
+    </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        <!-- /.card -->
+      </div><!-- /.container-fluid -->
     </section>
-  </div>
+    <!-- /.content -->
+    <div class="content-header">
+          <div class="card card-info">
+          <div class="card-header">
+            <h3 class="card-title">Data System Manucfaturer</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart">
+              
+          <script type="text/javascript" src="Chart.js"></script>
+    <?php 
+	include 'koneksi.php';
+	?>
+ 
+	<div style="width: 700px;margin: 0px auto;">
+		<canvas id="myPie"></canvas>
+	</div>
+ 
+	<br/>
+	<script>
+		var ctx = document.getElementById("myPie").getContext('2d');
+		var myChart = new Chart(ctx, {
+			type: 'pie',
+			data: {
+				labels: ["HP", "Dell Inc.", "VMware, Inc."],
+				datasets: [{
+					label: '',
+					data: [
+					<?php 
+					$jumlah_HP = mysqli_query($db,"select * from tb_asset where system_manufacturer='HP'");
+          echo mysqli_num_rows($jumlah_HP);
+					?>, 
+					<?php 
+					$jumlah_Dell  = mysqli_query($db,"select * from tb_asset where system_manufacturer='Dell Inc.'");
+          echo mysqli_num_rows($jumlah_Dell);
+					?>, 
+					<?php 
+					$jumlah_VMware = mysqli_query($db,"select * from tb_asset where system_manufacturer='VMware'");
+          echo mysqli_num_rows($jumlah_VMware);
+					?>
+					],
+					backgroundColor: 
+            ['rgb(255, 99, 132)', 'rgba(56, 86, 255, 0.87)', 'rgb(60, 179, 113)','rgb(175, 238, 239)'],
+				
+					borderColor: ['rgb(255, 99, 132)'],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						ticks: {
+							beginAtZero:true
+						}
+					}]
+				}
+			}
+		});
+	</script>
+    </div>
+            </div>
+          </div>
+          </div>
+          <!-- /.card-body -->
+        <!-- /.card -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
   <footer class="main-footer">
     <center><strong>Copyright &copy; 2022 <a href="https://adminlte.io">Sreeya Sewu Indonesia</a>.</strong></center>
     </div>
